@@ -26,8 +26,8 @@ export class HomePage {
     this.wooCommerce = WC(
       {
         url: "http://test.institucion.net/dani/wordpress",
-        consumerKey: "ck_434b6c4f26006bd5f9d0ded29c92843bde95c854",
-        consumerSecret: "cs_f9ddc5236f4264b6cf952485cdf7acd8046f1ad7"
+        consumerKey: "ck_key",
+        consumerSecret: "cs_secret"
       });
     this.loadMoreProducts(null);
 
