@@ -1,0 +1,68 @@
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="card-background-page">
+    <ion-card>
+      <img src="assets/imgs/clark-street-mercantile-33931-unsplash.jpg">
+      <div class="card-title">WOOIONIC</div>
+      <div class="card-subtitle">keep shopping</div>
+    </ion-card>
+
+    <ion-list>
+      <ion-item-divider color="danger">Categories</ion-item-divider>
+      <ion-card *ngFor="let category of categories">
+      <ion-item  color="light" text-wrap="" (click)="openCategoryPage(category)" menuClose="">
+        <ion-icon [name]="category.icon" item-left="" large=""></ion-icon>
+        <h2>{{ category.name }}</h2>
+        <p>{{ category.description }}</p>
+      </ion-item>
+      </ion-card>
+
+      <ion-item-divider color="danger">Account</ion-item-divider>
+      <ion-item (click)="openPage('signup')" menuClose="" *ngIf="!loggedIn">
+        <ion-icon name="md-clipboard" item-left="" large></ion-icon>
+        <h2>Signup</h2>
+        <p>For a new account</p>
+      </ion-item>
+
+      <ion-item (click)="openPage('login')" menuClose="" *ngIf="!loggedIn">
+        <ion-icon name="log-in" item-left="" large></ion-icon>
+        <h2>Login</h2>
+        <p>using email and password</p>
+      </ion-item>
+
+      <ion-item *ngIf="loggedIn" menuClose>
+        <ion-icon name="contact" item-left large></ion-icon>
+        <h2>{{ (this.user.firstname == '' ? this.user.username : this.user.firstname) || "" }}</h2>
+        <p>Welcome</p>
+      </ion-item>
+
+      <ion-item *ngIf="loggedIn" (click)="openPage('cart')" menuClose>
+        <ion-icon name="cart" item-left large></ion-icon>
+        <h2>Your Cart</h2>
+        <p>Check items in your cart</p>
+      </ion-item>
+
+      <ion-item *ngIf="loggedIn" (click)="openPage('logout')" menuClose>
+        <ion-icon name="log-out" item-left large></ion-icon>
+        <h2>Logout</h2>
+        <p>of your Account</p>
+      </ion-item>
+
+
+    </ion-list>
+
+    <!--<ion-infinite-scroll (ionInfinite)="loadMoreProducts1($event)">
+      <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>-->
+
+  </ion-content>
+
+
+</ion-menu>
+
+<ion-nav #content [root]="homePage" ></ion-nav>
